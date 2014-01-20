@@ -1,4 +1,4 @@
-compJPEG <- function(file.list = NULL, url.list = NULL, save.file, sample = NULL){
+compJPEG <- function(file.list = NULL, url.list = NULL, save.file, sample = 0){
   
   #Assume that files are the preferred option; people who submit both deserve what they get
   if(!is.null(file.list)){
