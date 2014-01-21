@@ -14,7 +14,7 @@ compJPEG <- function(file.list = NULL, url.list = NULL, save.file, sample = 0){
     Validation.Obj <- URLClass$new(data = url.list,
                               sample = sample)
   
-  #If you haven't provided files OR URLs, you didn't read the documentation and deserve precisely what you get.
+  #If you haven't provided files OR URLs, you didn't read the documentation.
   } else {
   
     stop("You have not provided any file names or URLs")
@@ -32,5 +32,5 @@ compJPEG <- function(file.list = NULL, url.list = NULL, save.file, sample = 0){
   JPEG.Obj$generator()
   
   #Save it
-  writeJPEG(JPEG.Obj$data, target = save.filem quality = 1)
+  writeJPEG(JPEG.Obj$data, target = save.file, quality = 1)
 }

@@ -1,3 +1,4 @@
+#Class for file validation
 FileClass <- setRefClass(Class = "FileClass",
                          fields = list(
                            data = "character",
@@ -29,6 +30,7 @@ FileClass <- setRefClass(Class = "FileClass",
                                
                                #Restrict data
                                .self$data <- .self$data[filematches,]
+                               
                              }
                            },
                            
@@ -41,10 +43,22 @@ FileClass <- setRefClass(Class = "FileClass",
                              if(sum(exists) < .self$sample & sum(exists) > 0){
                                
                                #Warn
-                               warning()
+                               warning("There are fewer valid entries than specified in the 'sample' parameter.")
                                
-                               #
+                               #Reduce object size (and sample size)
+                               .self$data <- .self$data[exists,]
+                               .self$sample <- sum(exists)
+                              
+                             #If there are no matches...
+                             } else if( sum(exists) == 0){
                                
+                               #Stop
+                               stop("There are no valid filenames or URLs")
+                               
+                             } else {
+                               
+                               #Restrict data
+                               .self$data <- .self$data[filematches,]
                                
                              }
                            },
