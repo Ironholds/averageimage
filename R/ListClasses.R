@@ -43,7 +43,7 @@ FileClass <- setRefClass(Class = "FileClass",
                              if(sum(exists) < .self$sample & sum(exists) > 0){
                                
                                #Warn
-                               warning("There are fewer valid entries than specified in the 'sample' parameter.")
+                               warning("There are fewer valid filenames than specified in the 'sample' parameter.")
                                
                                #Reduce object size (and sample size)
                                .self$data <- .self$data[exists,]
@@ -53,7 +53,7 @@ FileClass <- setRefClass(Class = "FileClass",
                              } else if( sum(exists) == 0){
                                
                                #Stop
-                               stop("There are no valid filenames or URLs")
+                               stop("There are no valid filenames")
                                
                              } else {
                                
@@ -81,4 +81,42 @@ FileClass <- setRefClass(Class = "FileClass",
                              
                            }
                         )
+)
+
+#Class for URLs; inherits from FileClass
+URLClass <- setRefClass(Class = "URLClass",
+                        contains = "FileClass",
+                        methods = list(
+                          
+                          #Test connections, shadowing FileClass$TestCon
+                          TestCon = function(){
+                            
+                            TestCon = function(){
+                              
+                              #Check for the file's existence
+                              exists <- url.exists(.self$data)
+                              
+                              #If there are fewer existing files than sample size, but more than none..
+                              if(sum(exists) < .self$sample & sum(exists) > 0){
+                                
+                                #Warn
+                                warning("There are fewer valid URLs than specified in the 'sample' parameter.")
+                                
+                                #Reduce object size (and sample size)
+                                .self$data <- .self$data[exists,]
+                                .self$sample <- sum(exists)
+                                
+                                #If there are no matches...
+                              } else if( sum(exists) == 0){
+                                
+                                #Stop
+                                stop("There are no valid URLs")
+                                
+                              } else {
+                                
+                                #Restrict data
+                                .self$data <- .self$data[filematches,]
+                              } 
+                          }
+                          )
 )
