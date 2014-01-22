@@ -29,7 +29,7 @@ FileClass <- setRefClass(Class = "FileClass",
                              } else {
                                
                                #Restrict data
-                               .self$data <- .self$data[filematches,]
+                               .self$data <- .self$data[filematches]
                                
                              }
                            },
@@ -46,7 +46,7 @@ FileClass <- setRefClass(Class = "FileClass",
                                warning("There are fewer valid filenames than specified in the 'sample' parameter.")
                                
                                #Reduce object size (and sample size)
-                               .self$data <- .self$data[exists,]
+                               .self$data <- .self$data[exists]
                                .self$sample <- sum(exists)
                               
                              #If there are no matches...
@@ -58,7 +58,7 @@ FileClass <- setRefClass(Class = "FileClass",
                              } else {
                                
                                #Restrict data
-                               .self$data <- .self$data[filematches,]
+                               .self$data <- .self$data[filematches]
                                
                              }
                            },
