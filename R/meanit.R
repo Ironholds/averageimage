@@ -1,4 +1,4 @@
-compJPEG <- function(file.list = NULL, url.list = NULL, save.file, sample = 0){
+compJPEG <- function(file.list = NULL, url.list = NULL, save.file, sample = 0, imagetype = "jpeg"){
   
   #Assume that files are the preferred option; people who submit both deserve what they get
   if(!is.null(file.list)){
@@ -24,13 +24,26 @@ compJPEG <- function(file.list = NULL, url.list = NULL, save.file, sample = 0){
   #Either way, validate them
   validation.Obj$validate()
   
-  #Take the resulting data, add it to the JPEGClass.
-  JPEG.Obj <- JPEGClass$new(data = Validation.Obj$data,
-                            type = class(Validation.Obj)[1])
+  #Take the resulting data, decide what class to add it to.
+  switch(imagetype,
+         "jpeg" = {
+           
+           break
+         },
+         "png" = {
+           
+           break
+         },
+         "bmp" = {
+           
+           break
+         },
+         "tiff" = {
+           
+           break
+         })
   
-  #Generate the image
+  #Generate and save the image
   JPEG.Obj$generator()
   
-  #Save it
-  writeJPEG(JPEG.Obj$data, target = save.file, quality = 1)
 }
