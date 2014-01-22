@@ -17,7 +17,7 @@ FileClass <- setRefClass(Class = "FileClass",
                                warning("There are fewer valid entries than specified in the 'sample' parameter.")
                                
                                #Restrict input data and reduce sample size
-                               .self$data <- .self$data[filematches,]
+                               .self$data <- .self$data[filematches]
                                .self$sample <- sum(filematches)
                                
                              #The valid matches might also be zero
