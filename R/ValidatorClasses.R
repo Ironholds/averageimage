@@ -90,9 +90,7 @@ URLClass <- setRefClass(Class = "URLClass",
                           
                           #Test connections, shadowing FileClass$TestCon
                           TestCon = function(){
-                            
-                            TestCon = function(){
-                              
+
                               #Check for the file's existence
                               exists <- url.exists(.self$data)
                               
@@ -116,7 +114,7 @@ URLClass <- setRefClass(Class = "URLClass",
                                 
                                 #Restrict data
                                 .self$data <- .self$data[filematches,]
-                              } 
-                          }
+                              }
+                            }
                           )
 )
