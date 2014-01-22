@@ -58,7 +58,7 @@ FileClass <- setRefClass(Class = "FileClass",
                              } else {
                                
                                #Restrict data
-                               .self$data <- .self$data[filematches]
+                               .self$data <- .self$data[exists]
                                
                              }
                            },
