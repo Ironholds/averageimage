@@ -42,7 +42,57 @@ PNGClass <- setRefClass(Class = "PNGClass",
                           #Method for trimming down odd-sized images
                           trimmer = function(){
                             
+                            #Grab the dimensions of the object
+                            array_dims <- lapply(.self$images, dim)
                             
+                            #Form into a dataframe
+                            array_dims <- do.call("rbind", array_dims)
+                            
+                            #Identify minimum values
+                            min_x <- min(array_dims[,1])
+                            min_y <- min(array_dims[,2])
+                            min_depth <- min(array_dims[,3])
+                            
+                            #Trim each entry
+                            .self$images <- lapply(.self$images, function(x){
+                              
+                              #If the x-axis is wider than the minimum x value...
+                              if(dim(x)[1] != min_x){
+                                
+                                #Calculate the pixels to take, orienting around the middle of the image
+                                x_ceiling <- ceiling((dim(x)[1] - min_x)/2)
+                                x_floor <- floor((dim(x)[1] - min_x)/2)
+                                x_range <- x_ceiling:((dim(x)[1] - x_floor)-1)
+                                
+                                #Otherwise...
+                              } else {
+                                
+                                #Just take everything
+                                x_range <- 1:dim(x)[1]
+                                
+                              }
+                              
+                              #Same for Y-axis
+                              if(dim(x)[2] != min_y){
+                                
+                                y_ceiling <- ceiling((dim(x)[2] - min_y)/2)
+                                y_floor <- floor((dim(x)[2] - min_y)/2)
+                                y_range <- y_ceiling:((dim(x)[2] - y_floor)-1)
+                                
+                              } else {
+                                
+                                y_range <- 1:dim(x)[2]
+                                
+                              }
+                              
+                              #Restrict dimensions to the minimum of the images in the filtered set.
+                              x <- x[x_range,
+                                     y_range,
+                                     1:min_depth]
+                              
+                              #Return!
+                              return(x)
+                            })
                           },
                           
                           #Method for actually, well, generating the composites ;p
@@ -131,7 +181,6 @@ JPEGClass <- setRefClass(Class = "JPEGClass",
                             })
                              
                           },
-                           
                           
                           #Grouped function - shadows PNGClass$generator()
                           generator = function(){
@@ -149,20 +198,6 @@ JPEGClass <- setRefClass(Class = "JPEGClass",
                             writeJPEG(image = composite_image,
                                       target = save.file,
                                       quality = 1)
-                           }
-                        )
-)
-
-TIFFClass <- setRefClass(Class = "TIFFClass",
-                         contains = "PNGClass",
-                         methods = list(
-                           
-                         )
-)
-
-BMPClass <- setRefClass(Class = "BMPClass",
-                        contains = "PNGClass",
-                        methods = list(
-                          
+                          }
                         )
 )
