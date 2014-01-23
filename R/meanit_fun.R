@@ -17,19 +17,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-# Package documentation
-#' Composite image generation in R.
-#'
-#' Meanit is a package for generating composite JPEGs and PNGs from an inputted list of filenames or URLs.
-#'
-#' @author
-#' Oliver Keyes \email{scire.facias@@gmail.com}
-#'
-#' @name meanit
-#' @docType package
-#' @import jpeg png RCurl
-
-#Function documentation
 #'@title meanit
 #'@description Generate composite images from a list of PNGs or JPEGs
 #'@details Meanit is the primary function of the package, and ties the internal methods and functions
@@ -41,7 +28,7 @@
 #'each image is then trimmed to match those dimensions. This trimming operates from the middle of the image,
 #'rather than any edge, in order to prioritise retaining the 'important' bits.
 #'
-#'@section Caveats : Meanit accepts both PNGs (greyscale or full) and JPEGs, although the list of
+#'@section Caveats: Meanit accepts both PNGs (greyscale or full) and JPEGs, although the list of
 #'files or URLs provided should only refer to one type of image. If JPEGs and PNGs are combined, it won't
 #'work - if full and grayscale PNGs are provided, the returned image will be grayscale.
 #'@param files a vector of absolute file names that contain PNGs or JPEGs
