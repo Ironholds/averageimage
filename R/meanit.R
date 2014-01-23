@@ -1,7 +1,15 @@
-compJPEG <- function(file.list = NULL, url.list = NULL, save.file, sample = 0, imagetype = "jpeg"){
+meanit <- function(file.list = NULL, url.list = NULL, save.file, sample = NULL, imagetype){
   
   #Assume that files are the preferred option; people who submit both deserve what they get
   if(!is.null(file.list)){
+    
+    #If the sample is NULL
+    if(is.null(sample)){
+      
+      #Assume that the sample is, well, everything
+      sample <- length(file.list)
+      
+    }
     
     #Assign to the file class
     Validation.Obj <- FileClass$new(data = file.list,
@@ -9,6 +17,14 @@ compJPEG <- function(file.list = NULL, url.list = NULL, save.file, sample = 0, i
     
   #If they've not submitted files, but have submitted URLs..
   } else if(!is.null(url.list)){
+    
+    #If the sample is NULL
+    if(is.null(sample)){
+      
+      #Assume that the sample is, well, everything
+      sample <- length(url.list)
+      
+    }
     
     #Assign to the URL class
     Validation.Obj <- URLClass$new(data = url.list,
@@ -22,28 +38,27 @@ compJPEG <- function(file.list = NULL, url.list = NULL, save.file, sample = 0, i
   }
   
   #Either way, validate them
-  validation.Obj$validate()
+  Validation.Obj$validate()
   
   #Take the resulting data, decide what class to add it to.
   switch(imagetype,
          "jpeg" = {
            
+           #Add to the JPEGClass
+           Composer.Obj <- JPEGClass$new(imagenames = Validation.Obj$data,
+                                         retrieval_type = class(validation.Obj)[1])
            break
          },
          "png" = {
            
-           break
-         },
-         "bmp" = {
-           
-           break
-         },
-         "tiff" = {
+           #Add to the PNGClass
+           Composer.Obj <- PNGClass$new(imagenames = Validation.Obj$data,
+                                         retrieval_type = class(validation.Obj)[1])
            
            break
          })
   
   #Generate and save the image
-  JPEG.Obj$generator()
+  Composer.Obj$generator()
   
 }
