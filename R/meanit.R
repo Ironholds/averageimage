@@ -46,16 +46,15 @@ meanit <- function(file.list = NULL, url.list = NULL, save.file, sample = NULL, 
            
            #Add to the JPEGClass
            Composer.Obj <- JPEGClass$new(imagenames = Validation.Obj$data,
-                                         retrieval_type = class(validation.Obj)[1])
-           break
+                                         retrieval_type = class(Validation.Obj)[1],
+                                         savefile = save.file)
          },
          "png" = {
            
            #Add to the PNGClass
            Composer.Obj <- PNGClass$new(imagenames = Validation.Obj$data,
-                                         retrieval_type = class(validation.Obj)[1])
-           
-           break
+                                        retrieval_type = class(Validation.Obj)[1],
+                                        savefile = save.file)
          })
   
   #Generate and save the image
