@@ -2,14 +2,40 @@ PNGClass <- setRefClass(Class = "PNGClass",
                         fields = list(
                           imagenames = "character",
                           retrieval_type = "character",
-                          samplesize = "numeric",
                           images = "list"),
                         methods = list(
                           
                           #Method for reading the image in
                           reader = function(){
                             
-                            
+                            .self$images <- lapply(.self$imagenames, function(x){
+                              
+                              #For URLs...
+                              if(retrieval_type == "URLClass"){
+                                
+                                #Download the file
+                                download.file(url = x,
+                                              destfile = "tempfile.png",
+                                              quiet = TRUE)
+                                
+                                #Read it in from the temporary location
+                                image_array <- readPNG("tempfile.png")
+                                
+                                #Delete the temporary file
+                                file.remove("tempfile.png")
+                                
+                              #For files..
+                              } else {
+                                
+                                #Just read it straight in
+                                image_array <- readPNG(x)
+                                
+                              }
+                              
+                              #Return
+                              return(image_array)
+                              
+                            })
                             
                           },
                           
@@ -74,10 +100,38 @@ JPEGClass <- setRefClass(Class = "JPEGClass",
                            
                           #Method for reading the image in - shadows PNGClass$reader()
                           reader = function(){
-                           
-                           
-                           
+                            
+                            .self$images <- lapply(.self$imagenames, function(x){
+                              
+                              #For URLs...
+                              if(retrieval_type == "URLClass"){
+                                
+                                #Download the file
+                                download.file(url = x,
+                                              destfile = "tempfile.jpeg",
+                                              quiet = TRUE)
+                                 
+                                #Read it in from the temporary location
+                                image_array <- readJPEG("tempfile.jpeg")
+                                 
+                                #Delete the temporary file
+                                file.remove("tempfile.jpeg")
+                                 
+                                #For files..
+                              } else {
+                                 
+                                #Just read it straight in
+                                image_array <- readJPEG(x)
+                                 
+                              }
+                               
+                              #Return
+                              return(image_array)
+                               
+                            })
+                             
                           },
+                           
                           
                           #Grouped function - shadows PNGClass$generator()
                           generator = function(){
