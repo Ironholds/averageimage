@@ -45,9 +45,8 @@ FileClass <- setRefClass(Class = "FileClass",
                                #Warn
                                warning("There are fewer valid filenames than specified in the 'sample' parameter.")
                                
-                               #Reduce object size (and sample size)
+                               #Reduce object size
                                .self$data <- .self$data[exists]
-                               .self$sample <- sum(exists)
                               
                              #If there are no matches...
                              } else if( sum(exists) == 0){
@@ -57,8 +56,8 @@ FileClass <- setRefClass(Class = "FileClass",
                                
                              } else {
                                
-                               #Restrict data
-                               .self$data <- .self$data[exists]
+                               #Sample and restrict data
+                               .self$data <- sample(.self$data[exists], .self$sample)
                                
                              }
                            },
@@ -100,9 +99,8 @@ URLClass <- setRefClass(Class = "URLClass",
                                 #Warn
                                 warning("There are fewer valid URLs than specified in the 'sample' parameter.")
                                 
-                                #Reduce object size (and sample size)
+                                #Reduce object size
                                 .self$data <- .self$data[exists,]
-                                .self$sample <- sum(exists)
                                 
                                 #If there are no matches...
                               } else if( sum(exists) == 0){
@@ -113,7 +111,7 @@ URLClass <- setRefClass(Class = "URLClass",
                               } else {
                                 
                                 #Restrict data
-                                .self$data <- .self$data[filematches,]
+                                .self$data <- sample(.self$data[filematches,], .self$sample)
                               }
                             }
                           )
