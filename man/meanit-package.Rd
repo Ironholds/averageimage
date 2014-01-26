@@ -11,7 +11,7 @@ A composite image generator for JPEGS and PNGs.
 \tabular{ll}{
 Package: \tab meanit\cr
 Type: \tab Package\cr
-Version: \tab 0.1\cr
+Version: \tab 1.0.0\cr
 Date: \tab 2014-01-23\cr
 License: \tab MIT\cr
 }
