@@ -20,10 +20,10 @@ meanit <- function(input, save.file = NULL){
   if(length(grep(x = input[[1]], pattern = "http", ignore.case = TRUE)) > 0 ){
     
     #Check type and retrieve relevant function
-    image_handler <- type_checker(x = urls)
+    image_handler <- type_checker(x = input)
 
     #Run retrieve_from_url with relevant handler
-    images <- lapply(urls, retrieve_from_url, image_handler$reader)
+    images <- lapply(input, retrieve_from_url, image_handler$reader)
   
   } else if(class(input[[1]]) == "array"){
     
@@ -35,8 +35,8 @@ meanit <- function(input, save.file = NULL){
   } else { 
     
     #Otherwise, check and retrieve from file with relevant handler
-    image_handler <- type_checker(x = files)
-    images <- lapply(files, retrieve_from_file, image_handler$reader)
+    image_handler <- type_checker(x = input)
+    images <- lapply(input, retrieve_from_file, image_handler$reader)
     
   }
   
