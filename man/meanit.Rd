@@ -3,13 +3,11 @@
 \alias{meanit}
 \title{meanit}
 \usage{
-meanit(files, urls = NULL, save.file = NULL)
+meanit(input, save.file = NULL)
 }
 \arguments{
-\item{files}{a vector of absolute file names that contain PNGs or JPEGs}
-
-\item{urls}{a vector of absolute URLs that refer to PNGs or JPEGs. Priority is given to
-files, not urls; submit one or the other.}
+\item{input}{any one of a vector of URLs, a vector of absolute file names, or a list of
+already-read PNGs or JPEGs.}
 
 \item{save.file}{the absolute file name to save the composite image into}
 }

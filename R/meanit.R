@@ -10,21 +10,27 @@
 #'
 #'For retrieving images from URLs, the package (and function) is dependent on RCurl. This means,
 #'amongst other things, that https is not a supported protocol. URLs must be provided with http.
-#'@param files a vector of absolute file names that contain PNGs or JPEGs
-#'@param urls a vector of absolute URLs that refer to PNGs or JPEGs. Priority is given to 
-#'files, not urls; submit one or the other.
+#'@param input any one of a vector of URLs, a vector of absolute file names, or a list of
+#'already-read PNGs or JPEGs.
 #'@param save.file the absolute file name to save the composite image into
 #'@export 
-meanit <- function(files, urls = NULL, save.file = NULL){
+meanit <- function(input, save.file = NULL){
   
   #If URLs are provided instead of files...
-  if(!is.null(urls)){
+  if(length(grep(x = input[[1]], pattern = "http", ignore.case = TRUE)) > 0 ){
     
     #Check type and retrieve relevant function
     image_handler <- type_checker(x = urls)
-    
+
     #Run retrieve_from_url with relevant handler
     images <- lapply(urls, retrieve_from_url, image_handler$reader)
+  
+  } else if(class(input[[1]]) == "array"){
+    
+    #If it's already read in, work out the handlers from save.file
+    #Then simply use the input as the images
+    image_handler <- type_checker(x = save.file)
+    images <- input
     
   } else { 
     
