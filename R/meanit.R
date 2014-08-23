@@ -1,10 +1,10 @@
-#'@title meanit
-#'@description Generate composite images from a list of PNGs or JPEGs
-#'@details meanit generates composite PNGs or JPEGs. To deal with images of different sizes, the smallest dimensions of listed images are calculated, and
+#'@title averageimage
+#'@description Create a composite image from a list of PNGs or JPEGs
+#'@details averageimage generates composite PNGs or JPEGs. To deal with images of different sizes, the smallest dimensions of listed images are calculated, and
 #'each image is then trimmed to match those dimensions. This trimming operates from the middle of the image,
 #'rather than any edge, in order to prioritise retaining the 'important' bits.
 #'
-#'@section Caveats and errors: Meanit accepts both PNGs (greyscale or full) and JPEGs, although the list of
+#'@section Caveats and errors: Averageimage accepts both PNGs (greyscale or full) and JPEGs, although the list of
 #'files or URLs provided should only refer to one type of image. If JPEGs and PNGs are combined, it won't
 #'work - if full and grayscale PNGs are provided, the returned image will be grayscale.
 #'
@@ -14,7 +14,7 @@
 #'already-read PNGs or JPEGs.
 #'@param save.file the absolute file name to save the composite image into
 #'@export 
-meanit <- function(input, save.file = NULL){
+averageimage <- function(input, save.file = NULL){
   
   #If URLs are provided instead of files...
   if(length(grep(x = input[[1]], pattern = "http", ignore.case = TRUE)) > 0 ){

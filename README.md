@@ -1,4 +1,4 @@
-meanit
+averageimage
 ======
 
 An R package for creating composite PNGs or JPEGs
@@ -9,7 +9,7 @@ __Status:__ Stable
 
 Description
 ======
-meanit is an R package designed to generate composite images. It currently handles grayscale and full PNGs, as well as JPEGs, through the sole user-accessible function (_also_ called 'meanit').
+averageimage is an R package designed to generate composite images. It currently handles grayscale and full PNGs, as well as JPEGs, through the sole user-accessible function (_also_ called 'meanit').
 
 Using the package is relatively simple and explained in the .Rd help files, but to summarise: provide a list or vector of:
 
@@ -21,12 +21,12 @@ Combine it with the name of a save file, and meanit will take the images you're 
 
 Usage
 ======
-Things you can do with meanit and absolutely should:
+Things you can do with averageimage and absolutely should:
 
 * Generate beautiful composite JPEGs or PNGs.
 * Join me in pushing R over the threshold of Zawinski's law.
 
-Things you cannot do with meanit and should feel bad for even thinking of:
+Things you cannot do with averageimage and should feel bad for even thinking of:
 
 * Mix JPEGs and PNGs in your file list;
 * Mix full PNGs and grayscale PNGs (you _can_, but the resulting image will be grayscale);

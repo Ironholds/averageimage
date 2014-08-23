@@ -1,9 +1,9 @@
-Package: meanit
+Package: averageimage
 Type: Package
-Title: Composite image generation in R
-Description: A composite image generator for R that accepts PNGs and JPEGs as
-    input and averages (or means) them to produce an output.
-Version: 0.5.1
+Title: Composite image creation in R
+Description: averageimage accepts PNGs or JPEGs and generates a single,
+    composite image that averages the input images, channel by channel.
+Version: 0.5.0
 Date: 2014-08-23
 Author: Oliver Keyes <ironholds@gmail.com>
 Maintainer: Oliver Keyes <ironholds@gmail.com>

@@ -1,4 +1,4 @@
 library(testthat)
-library(meanit)
+library(averageimage)
 
-test_check("meanit")
+test_check("averageimage")
