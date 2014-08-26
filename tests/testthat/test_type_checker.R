@@ -1,3 +1,4 @@
+context("Image type checking")
 test_that("image type checking handles invalid entries", {
   
   #Test for handling invalid entries

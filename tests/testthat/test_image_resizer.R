@@ -1,3 +1,4 @@
+context("Image resizing")
 test_that("image resizing works correctly with both minimums in a single image", {
   
   #Example set; 1 with both minimums, 1 with neither.

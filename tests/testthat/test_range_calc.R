@@ -1,3 +1,4 @@
+context("Image range calculation")
 test_that("range generation generates objects of the corrent length", {
   
   #Length of output

@@ -1,3 +1,4 @@
+context("Image composition")
 test_that("image composition works correctly with two identically-sized images", {
   
   #Example set.

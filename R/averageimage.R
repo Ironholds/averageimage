@@ -13,6 +13,19 @@
 #'@param input any one of a vector of URLs, a vector of absolute file names, or a list of
 #'already-read PNGs or JPEGs.
 #'@param save.file the absolute file name to save the composite image into
+#'
+#'@examples
+#'#Running from URLs and returning the composite image as an array
+#'composite_image <- averageimage(input = c("https://upload.wikimedia.org/wikipedia/commons/e/e0/Mt_Basin_and_Mt_Tom_shot_from_the_South.JPG",
+#'                                          "https://upload.wikimedia.org/wikipedia/commons/c/c3/Mt_Basin_and_Mt_Tom_shot_from_the_East.JPG"))
+#'str(composite_image)
+#'#num [1:1224, 1:1632, 1:3] 0.416 0.418 0.416 0.414 0.416 ...
+#'
+#'#Running from files and saving to file
+#'\dontrun{
+#'averageimage(input = c("first_image.png","second_image.png"), save.file = "output.png")
+#'>TRUE
+#'}
 #'@export 
 averageimage <- function(input, save.file = NULL){
   
