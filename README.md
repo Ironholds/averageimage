@@ -3,7 +3,7 @@ averageimage
 
 An R package for creating composite PNGs or JPEGs
 
-__Author:__ [Oliver Keyes](http://blog.ironholds.org)<br/>
+__Author:__ [Oliver Keyes](http://ironholds.org)<br/>
 __License:__ [MIT](http://opensource.org/licenses/MIT)<br/>
 __Status:__ Stable
 
